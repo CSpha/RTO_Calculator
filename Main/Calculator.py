@@ -15,7 +15,13 @@ lunch_percent = float(input("What percentage of the time do you believe you will
 # ChatGPT estimate for average lunch cost, 261 working days per year, and user's estimate of eating out.
 lunch_cost = 10 * 261 * lunch_percent
 
-total_salary = commute_cost + base_salary + lunch_cost
+# Apparel costs for white-collar employees as reported by the U.S. Bureau of Labor
+apparel_cost = 1754
+
+print("The U.S. Bureau of Labor estimates that the typical white-collar employee spends $1754 on clothing each year so "
+"we will factor that in as well.")
+
+total_salary = commute_cost + base_salary + lunch_cost + apparel_cost
 
 print("The salary of your next position must be equal or greater than $" + str(total_salary) + " to ensure that you "
       "will be making more money by switching jobs.")
