@@ -7,17 +7,17 @@ else:
     print("Thank you")
 
 commute = int(input("Please enter (in miles) how far the work location is from your house: "))
-commute_cost = ((commute * 2) * .41) * 261
+# U.S. Department of Energy estimate of average cost per mile. Assuming round trip and 261 working days per year.
+commute_cost = ((commute * 2) * .58) * 261
 
 lunch_percent = float(input("What percentage of the time do you believe you will buy lunch? We will assume the cost "
                             "of a typical lunch is $10.00. "))
+# ChatGPT estimate for average lunch cost, 261 working days per year, and user's estimate of eating out.
 lunch_cost = 10 * 261 * lunch_percent
 
 total_salary = commute_cost + base_salary + lunch_cost
 
 print("The salary of your next position must be equal or greater than $" + str(total_salary) + " to ensure that you "
-                                                                                              "will be making more "
-                                                                                              "money by switching "
-                                                                                              "jobs.")
+      "will be making more money by switching jobs.")
 
 
