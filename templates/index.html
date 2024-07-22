@@ -8,13 +8,13 @@
     <h1>Return to Office Calculator</h1>
         <form action="/calculate" method="post">
             <label for="base_salary">Enter your current salary (rounding to the nearest whole number and with no commas):</label><br>
-            <input type="text" id="base_salary" name="base_salary"><br><br>
+            <input type="text" id="base_salary" name="base_salary" required><br><br>
 
             <label for="commute">Enter (in miles) how far the work location is from your house:</label><br>
-            <input type="text" id="commute" name="commute"><br><br>
+            <input type="text" id="commute" name="commute" required><br><br>
 
             <label for="lunch_percent">What percentage of the time do you believe you will buy lunch? (e.g., enter 0.5 for 50%):</label><br>
-            <input type="text" id="lunch_percent" name="lunch_percent"><br><br>
+            <input type="text" id="lunch_percent" name="lunch_percent" required><br><br>
 
             <input type="submit" value="Calculate">
         </form>
