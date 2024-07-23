@@ -10,10 +10,14 @@ def home():
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
+    error = None
     try:
-        base_salary = int(request.form['base_salary'])
-        if base_salary <0 or base_salary > 999999:
-            raise ValueError("Invalid salary")
+        base_salary = (request.form['base_salary'])
+        if not base_salary.isdigit():
+            raise ValueError("Invalid salary. Salary must be a whole number.")
+        base_salary = int(base_salary)
+        if base_salary < 0 or base_salary > 999999:
+            raise ValueError("Invalid salary. Salary must be between 0 and 999,999.")
 
         commute = int(request.form['commute'])
         if commute < 0:
@@ -22,8 +26,10 @@ def calculate():
         lunch_percent = float(request.form['lunch_percent'])
         if lunch_percent <0 or lunch_percent > 1:
             raise ValueError("Invalid lunch percentage")
+
     except ValueError as e:
-        return render_template('index.html', error=str(e))
+        error = str(e)
+        return render_template('index.html', error=error)
 
 
     # Calculations
