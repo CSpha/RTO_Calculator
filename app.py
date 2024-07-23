@@ -12,16 +12,20 @@ def home():
 def calculate():
     error = None
     try:
-        base_salary = (request.form['base_salary'])
+        base_salary = request.form['base_salary']
         if not base_salary.isdigit():
             raise ValueError("Invalid salary. Salary must be a whole number.")
         base_salary = int(base_salary)
         if base_salary < 0 or base_salary > 999999:
             raise ValueError("Invalid salary. Salary must be between 0 and 999,999.")
 
-        commute = int(request.form['commute'])
-        if commute < 0:
-            raise ValueError("Invalid commute distance")
+        commute = request.form['commute']
+        try:
+            commute = float(commute)
+            if commute < 0:
+                raise ValueError("Invalid commute distance entered. It must be a positive number.")
+        except ValueError:
+            raise ValueError("Invalid commute distance entered. Please enter a number.")
 
         lunch_percent = float(request.form['lunch_percent'])
         if lunch_percent <0 or lunch_percent > 1:
