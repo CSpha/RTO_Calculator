@@ -31,7 +31,7 @@ def calculate():
         if lunch_percent <0 or lunch_percent > 1:
             raise ValueError("Invalid lunch percentage")
 
-        new_clothes = request.form['new_clothes']
+        new_clothes = request.form.get('new_clothes', 'off')
 
 
 
@@ -44,9 +44,9 @@ def calculate():
     commute_cost = ((commute * 2) * .58) * 261
     lunch_cost = 10 * 261 * lunch_percent
     if new_clothes:
-        apparel_cost = 1754
-    else:
         apparel_cost = 0
+    else:
+        apparel_cost = 1754
     total_salary = commute_cost + base_salary + lunch_cost + apparel_cost
 
     return render_template('result.html', total_salary=total_salary)
