@@ -22,3 +22,20 @@ switching to an on-site role.
 3. Add some type of map integration so users can input their home address and the office address so the application 
 will determine the mileage used by the algorithm.
 4. Add logic to account for users who don't believe their meal or clothing budget will change by returning to the office.
+
+**BUILD & RUN**
+
+- **Run the app:**
+
+```powershell
+python app.py
+```
+
+- **Or use `flask run`:**
+
+```powershell
+$env:FLASK_APP = "app.py"
+flask run
+```
+
+The app serves templates from the `templates/` folder; open http://127.0.0.1:5000/ after starting.
