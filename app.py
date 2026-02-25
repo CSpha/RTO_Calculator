@@ -22,16 +22,19 @@ def calculate():
         commute = request.form['commute']
         try:
             commute = float(commute)
-            if commute < 0:
-                raise ValueError("Invalid commute distance entered. It must be a positive number.")
         except ValueError:
             raise ValueError("Invalid commute distance entered. Please enter a number.")
+        if commute < 0:
+            raise ValueError("Invalid commute distance entered. It must be a positive number.")
 
-        lunch_percent = float(request.form['lunch_percent'])
-        if lunch_percent <0 or lunch_percent > 1:
-            raise ValueError("Invalid lunch percentage")
+        try:
+            lunch_percent = float(request.form['lunch_percent'])
+        except ValueError:
+            raise ValueError("Invalid lunch percentage. Please enter a number between 0 and 1.")
+        if lunch_percent < 0 or lunch_percent > 1:
+            raise ValueError("Invalid lunch percentage. Please enter a number between 0 and 1.")
 
-        new_clothes = request.form.get('new_clothes', 'off')
+        no_new_clothes_cost = request.form.get('new_clothes') == 'on'
 
 
 
@@ -43,13 +46,14 @@ def calculate():
     # Calculations
     commute_cost = ((commute * 2) * .58) * 261
     lunch_cost = 10 * 261 * lunch_percent
-    if new_clothes:
+    if no_new_clothes_cost:
         apparel_cost = 0
     else:
         apparel_cost = 1754
     total_salary = commute_cost + base_salary + lunch_cost + apparel_cost
+    total_salary_display = f"{total_salary:,.2f}"
 
-    return render_template('result.html', total_salary=total_salary)
+    return render_template('result.html', total_salary_display=total_salary_display)
 
 
 if __name__ == '__main__':
