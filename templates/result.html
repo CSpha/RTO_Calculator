@@ -3,10 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculation Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            line-height: 1.4;
+        }
+
+        .result-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            background: #fafafa;
+            margin-top: 1rem;
+        }
+
+        .amount {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0b5;
+            margin: 0.35rem 0 0.5rem;
+        }
+
+        .muted {
+            color: #444;
+            margin: 0;
+        }
+
+        .actions {
+            margin-top: 1.25rem;
+        }
+
+        .breakdown {
+            margin-top: 1rem;
+            border-top: 1px solid #e2e2e2;
+            padding-top: 0.75rem;
+        }
+
+        .breakdown h2 {
+            font-size: 1rem;
+            margin: 0 0 0.5rem;
+        }
+
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.35rem 0;
+        }
+
+        .breakdown-row.total {
+            font-weight: 700;
+            border-top: 1px solid #ddd;
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .button-link {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background: #222;
+            padding: 0.5rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .button-link:hover {
+            background: #000;
+        }
+    </style>
 </head>
 <body>
     <h1>Calculation Result</h1>
-    <p>The salary of your next position must be equal or greater than <b>${{ total_salary_display }}</b> to ensure that you will not be losing money by switching jobs.</p>
-    <a href="/">Go Back</a>
+    <div class="result-card">
+        <p class="muted">To avoid losing money by switching to an on-site role, your next salary should be at least:</p>
+        <p class="amount">${{ total_salary_display }}</p>
+        <div class="breakdown">
+            <h2>Cost Breakdown</h2>
+            <div class="breakdown-row">
+                <span>Current salary</span>
+                <span>${{ breakdown.base_salary }}</span>
+            </div>
+            <div class="breakdown-row">
+                <span>Annual commute cost</span>
+                <span>${{ breakdown.commute_cost }}</span>
+            </div>
+            <div class="breakdown-row">
+                <span>Annual lunch cost</span>
+                <span>${{ breakdown.lunch_cost }}</span>
+            </div>
+            <div class="breakdown-row">
+                <span>Annual clothing cost</span>
+                <span>${{ breakdown.apparel_cost }}</span>
+            </div>
+            <div class="breakdown-row total">
+                <span>Required salary</span>
+                <span>${{ total_salary_display }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <a class="button-link" href="/">Adjust Inputs</a>
+    </div>
 </body>
 </html>

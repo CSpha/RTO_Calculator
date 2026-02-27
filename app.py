@@ -61,8 +61,18 @@ def calculate():
         apparel_cost = 1754
     total_salary = commute_cost + base_salary + lunch_cost + apparel_cost
     total_salary_display = f"{total_salary:,.2f}"
+    breakdown = {
+        'base_salary': f"{base_salary:,.2f}",
+        'commute_cost': f"{commute_cost:,.2f}",
+        'lunch_cost': f"{lunch_cost:,.2f}",
+        'apparel_cost': f"{apparel_cost:,.2f}",
+    }
 
-    return render_template('result.html', total_salary_display=total_salary_display)
+    return render_template(
+        'result.html',
+        total_salary_display=total_salary_display,
+        breakdown=breakdown,
+    )
 
 
 if __name__ == '__main__':
