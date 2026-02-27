@@ -3,10 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Return to Office Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            line-height: 1.4;
+        }
+
+        form {
+            margin-top: 1rem;
+        }
+
+        .field {
+            margin-bottom: 1rem;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-weight: 600;
+        }
+
+        .field input[type="number"] {
+            width: 100%;
+            max-width: 320px;
+            padding: 0.45rem 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .error {
+            color: #b00020;
+            margin: 0.35rem 0 0;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .checkbox-row label {
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .submit-btn {
+            padding: 0.5rem 0.9rem;
+            font-size: 0.95rem;
+        }
+    </style>
 </head>
 <body>
     <h1>Return to Office Calculator</h1>
         <form action="/calculate" method="post">
+            <div class="field">
             <label for="base_salary">Enter your current salary (rounding to the nearest whole number and with no commas):</label><br>
             <input
                 type="number"
@@ -18,11 +72,13 @@
                 inputmode="numeric"
                 value="{{ form_data.base_salary if form_data else '' }}"
                 required
-            ><br><br>
+            >
             {% if errors and errors.base_salary %}
-                <p style="color: red;">{{ errors.base_salary }}</p>
+                <p class="error">{{ errors.base_salary }}</p>
             {% endif %}
+            </div>
 
+            <div class="field">
             <label for="commute">Enter (in miles) how far the work location is from your house:</label><br>
             <input
                 type="number"
@@ -34,11 +90,13 @@
                 inputmode="decimal"
                 value="{{ form_data.commute if form_data else '' }}"
                 required
-            ><br><br>
+            >
             {% if errors and errors.commute %}
-                <p style="color: red;">{{ errors.commute }}</p>
+                <p class="error">{{ errors.commute }}</p>
             {% endif %}
+            </div>
 
+            <div class="field">
             <label for="lunch_percent">What percentage of the time do you believe you will buy lunch? (e.g., enter 0.5 for 50%):</label><br>
             <input
                 type="number"
@@ -50,23 +108,26 @@
                 inputmode="decimal"
                 value="{{ form_data.lunch_percent if form_data else '' }}"
                 required
-            ><br><br>
+            >
             {% if errors and errors.lunch_percent %}
-                <p style="color: red;">{{ errors.lunch_percent }}</p>
+                <p class="error">{{ errors.lunch_percent }}</p>
             {% endif %}
+            </div>
 
-            <label for="new_clothes">The bureau of labor statistics estimates that the average white collar employee spends $1700
-            on new clothes each year. We will add that in for you unless you check the box stating that you do not want this
-            added</label><br>
-            <input
-                type="checkbox"
-                id="new_clothes"
-                name="new_clothes"
-                value="on"
-                {% if form_data and form_data.new_clothes %}checked{% endif %}
-            ><br><br>
+            <div class="checkbox-row">
+                <input
+                    type="checkbox"
+                    id="new_clothes"
+                    name="new_clothes"
+                    value="on"
+                    {% if form_data and form_data.new_clothes %}checked{% endif %}
+                >
+                <label for="new_clothes">The bureau of labor statistics estimates that the average white collar employee spends $1700
+                on new clothes each year. We will add that in for you unless you check the box stating that you do not want this
+                added.</label>
+            </div>
 
-            <input type="submit" value="Calculate">
+            <input class="submit-btn" type="submit" value="Calculate">
         </form>
 </body>
 </html>
