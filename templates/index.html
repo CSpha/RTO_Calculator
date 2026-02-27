@@ -16,8 +16,12 @@
                 max="999999"
                 step="1"
                 inputmode="numeric"
+                value="{{ form_data.base_salary if form_data else '' }}"
                 required
             ><br><br>
+            {% if errors and errors.base_salary %}
+                <p style="color: red;">{{ errors.base_salary }}</p>
+            {% endif %}
 
             <label for="commute">Enter (in miles) how far the work location is from your house:</label><br>
             <input
@@ -28,8 +32,12 @@
                 max="500"
                 step="0.1"
                 inputmode="decimal"
+                value="{{ form_data.commute if form_data else '' }}"
                 required
             ><br><br>
+            {% if errors and errors.commute %}
+                <p style="color: red;">{{ errors.commute }}</p>
+            {% endif %}
 
             <label for="lunch_percent">What percentage of the time do you believe you will buy lunch? (e.g., enter 0.5 for 50%):</label><br>
             <input
@@ -40,18 +48,25 @@
                 max="1"
                 step="0.01"
                 inputmode="decimal"
+                value="{{ form_data.lunch_percent if form_data else '' }}"
                 required
             ><br><br>
+            {% if errors and errors.lunch_percent %}
+                <p style="color: red;">{{ errors.lunch_percent }}</p>
+            {% endif %}
 
             <label for="new_clothes">The bureau of labor statistics estimates that the average white collar employee spends $1700
             on new clothes each year. We will add that in for you unless you check the box stating that you do not want this
             added</label><br>
-            <input type="checkbox" id="new_clothes" name="new_clothes" value="on"><br><br>
+            <input
+                type="checkbox"
+                id="new_clothes"
+                name="new_clothes"
+                value="on"
+                {% if form_data and form_data.new_clothes %}checked{% endif %}
+            ><br><br>
 
             <input type="submit" value="Calculate">
         </form>
-        {% if error %}
-            <p style="color: red;">{{ error }}</p>
-        {% endif %}
 </body>
 </html>
