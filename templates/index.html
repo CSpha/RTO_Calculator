@@ -8,13 +8,40 @@
     <h1>Return to Office Calculator</h1>
         <form action="/calculate" method="post">
             <label for="base_salary">Enter your current salary (rounding to the nearest whole number and with no commas):</label><br>
-            <input type="text" id="base_salary" name="base_salary" required><br><br>
+            <input
+                type="number"
+                id="base_salary"
+                name="base_salary"
+                min="0"
+                max="999999"
+                step="1"
+                inputmode="numeric"
+                required
+            ><br><br>
 
             <label for="commute">Enter (in miles) how far the work location is from your house:</label><br>
-            <input type="text" id="commute" name="commute" required><br><br>
+            <input
+                type="number"
+                id="commute"
+                name="commute"
+                min="0"
+                max="500"
+                step="0.1"
+                inputmode="decimal"
+                required
+            ><br><br>
 
             <label for="lunch_percent">What percentage of the time do you believe you will buy lunch? (e.g., enter 0.5 for 50%):</label><br>
-            <input type="text" id="lunch_percent" name="lunch_percent" required><br><br>
+            <input
+                type="number"
+                id="lunch_percent"
+                name="lunch_percent"
+                min="0"
+                max="1"
+                step="0.01"
+                inputmode="decimal"
+                required
+            ><br><br>
 
             <label for="new_clothes">The bureau of labor statistics estimates that the average white collar employee spends $1700
             on new clothes each year. We will add that in for you unless you check the box stating that you do not want this
