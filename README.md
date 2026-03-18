@@ -17,7 +17,7 @@ switching to an on-site role.
 
 **UPCOMING FEATURES**
 
-1. Improve input validation
+~~1. Improve input validation~~
 2. Improve UX
 3. Add some type of map integration so users can input their home address and the office address so the application 
 will determine the mileage used by the algorithm.
